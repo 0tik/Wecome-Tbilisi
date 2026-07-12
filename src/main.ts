@@ -48,12 +48,12 @@ function render() {
         <div class="hero-venue">${t.hero.address} · ${t.hero.venue}</div>
       </div>
     </div>
-    <div class="hero-scroll">${t.hero.scroll}<span class="line"></span></div>
+    <div class="hero-scroll" aria-hidden="true"><span class="line"></span></div>
   </section>
 
   <section class="mission">
     <div class="wrap">
-      <img class="strip" src="/img/logo-strip-black.png" alt="" data-reveal />
+      <img class="wordmark" src="/img/logo-stack-black.png" alt="Welcome Tbilisi" data-reveal />
       <p data-reveal style="--d:.12s">${t.mission.text}</p>
     </div>
   </section>
@@ -250,7 +250,7 @@ function render() {
 
   <section class="forum">
     <div class="wrap">
-      <img class="strip" src="/img/logo-strip-black.png" alt="Welcome Tbilisi" data-reveal />
+      <img class="wordmark" src="/img/logo-stack-black.png" alt="Welcome Tbilisi" data-reveal />
       <div class="sub" data-reveal style="--d:.08s">${t.forum.subtitle}</div>
       <p class="unites" data-reveal style="--d:.14s">${t.forum.unites}</p>
       <p class="goal" data-reveal style="--d:.2s"><b>${t.forum.goal}</b></p>
@@ -355,8 +355,9 @@ function render() {
   ${marquee()}
 
   <section class="finale">
+    <img class="watermark" src="/img/logo-figure.png" alt="" aria-hidden="true" />
     <div class="wrap">
-      <img class="logo" src="/img/logo-v-black.png" alt="Welcome Tbilisi" data-reveal />
+      <img class="logo" src="/img/logo-h-black.png" alt="Welcome Tbilisi" data-reveal />
       <h2 class="heading thanks" data-reveal style="--d:.1s">${t.finale.thanks}</h2>
       <p class="dates" data-reveal style="--d:.18s">${t.finale.dates}</p>
     </div>

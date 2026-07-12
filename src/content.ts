@@ -11,7 +11,6 @@ export interface Content {
     dates: string;
     address: string;
     venue: string;
-    scroll: string;
   };
   mission: { text: string };
   facts: {
@@ -142,7 +141,6 @@ const ka: Content = {
     dates: "23-24-25 ოქტომბერი, 2026",
     address: "თავისუფლების მოედანი 2",
     venue: "თბილისის საკრებულოს შენობა",
-    scroll: "ჩამოსქროლეთ",
   },
   mission: {
     text: "ღონისძიების მიზანია თბილისის, როგორც <b>თანამედროვე</b>, <b>დინამიკური</b> და <b>საერთაშორისო</b> მასშტაბით კონკურენტუნარიანი ქალაქის პოზიციონირება და პოპულარიზაცია. ღონისძიება წარმოაჩენს იმ <b>მნიშვნელოვან პროგრესს</b>, რომელსაც ქალაქმა მიაღწია თანამედროვე არქიტექტურის, შემოქმედებითი ინდუსტრიების, კულტურის, ტურიზმისა და გასტრონომიის მიმართულებით, ასევე წარმოაჩენს <b>თბილისის უნიკალურ შესაძლებლობას</b>, წარმატებით შეუთავსოს ისტორიული მემკვიდრეობა თანამედროვე ურბანულ განვითარებას",
@@ -331,7 +329,6 @@ const en: Content = {
     dates: "23-24-25 October, 2026",
     address: "2 Freedom Square",
     venue: "Tbilisi City Assembly Building",
-    scroll: "Scroll down",
   },
   mission: {
     text: "The goal of the event is to position and promote Tbilisi as a <b>modern</b>, <b>dynamic</b> and <b>internationally competitive</b> city. The event showcases the <b>significant progress</b> the city has achieved in contemporary architecture, creative industries, culture, tourism and gastronomy, and highlights <b>Tbilisi's unique ability</b> to successfully blend its historical heritage with modern urban development",
