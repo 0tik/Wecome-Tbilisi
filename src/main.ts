@@ -17,7 +17,7 @@ const list = (items: string[], cls: string) =>
   `<ul class="${cls}">${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
 
 const marquee = () => {
-  const img = `<img src="/img/logo-strip-black.png" alt="" loading="lazy" />`;
+  const img = `<img src="img/logo-strip-black.png" alt="" loading="lazy" />`;
   return `<div class="marquee" aria-hidden="true"><div class="track">${img.repeat(8)}</div></div>`;
 };
 
@@ -32,8 +32,8 @@ function render() {
   app.innerHTML = `
   <header class="site-head" id="siteHead">
     <a class="brand" href="#top" aria-label="Welcome Tbilisi">
-      <img class="b-white" src="/img/logo-h-white.png" alt="" />
-      <img class="b-black" src="/img/logo-h-black.png" alt="Welcome Tbilisi" />
+      <img class="b-white" src="img/logo-h-white.png" alt="" />
+      <img class="b-black" src="img/logo-h-black.png" alt="Welcome Tbilisi" />
     </a>
     <button class="lang-btn" id="langBtn">${t.nav.lang}</button>
   </header>
@@ -41,7 +41,7 @@ function render() {
   <section class="hero" id="top">
     <div class="hero-bg"></div>
     <div class="hero-inner">
-      <img class="hero-logo" src="/img/logo-v-white.png" alt="Welcome Tbilisi" />
+      <img class="hero-logo" src="img/logo-v-white.png" alt="Welcome Tbilisi" />
       <span class="rule"></span>
       <div class="hero-meta">
         <div class="hero-dates">${t.hero.dates}</div>
@@ -53,7 +53,7 @@ function render() {
 
   <section class="mission">
     <div class="wrap">
-      <img class="wordmark" src="/img/logo-stack-black.png" alt="Welcome Tbilisi" data-reveal />
+      <img class="wordmark" src="img/logo-stack-black.png" alt="Welcome Tbilisi" data-reveal />
       <p data-reveal style="--d:.12s">${t.mission.text}</p>
     </div>
   </section>
@@ -72,10 +72,10 @@ function render() {
         <h3 class="heading">${t.facts.supportersTitle}</h3>
         ${list(t.facts.supporters, "sup")}
         <div class="sup-logos">
-          <img src="/img/sup-mayor.png" alt="${t.facts.supporters[0]}" loading="lazy" />
-          <img src="/img/sup-coat.png" alt="${t.facts.supporters[2]}" loading="lazy" />
-          <img src="/img/sup-georgia.png" alt="${t.facts.supporters[3]}" loading="lazy" />
-          <img src="/img/sup-creative.png" alt="${t.facts.supporters[1]}" loading="lazy" />
+          <img src="img/sup-mayor.png" alt="${t.facts.supporters[0]}" loading="lazy" />
+          <img src="img/sup-coat.png" alt="${t.facts.supporters[2]}" loading="lazy" />
+          <img src="img/sup-georgia.png" alt="${t.facts.supporters[3]}" loading="lazy" />
+          <img src="img/sup-creative.png" alt="${t.facts.supporters[1]}" loading="lazy" />
         </div>
       </div>
     </div>
@@ -91,13 +91,13 @@ function render() {
           <p class="side" data-reveal style="--d:.18s">${t.concept.side}</p>
         </div>
         <figure class="frame" data-reveal="right">
-          <img src="/img/facade.jpg" alt="Tbilisi City Assembly" loading="lazy" />
+          <img src="img/facade.jpg" alt="Tbilisi City Assembly" loading="lazy" />
         </figure>
       </div>
 
       <div class="spaces">
         <figure class="frame" data-reveal="left">
-          <img src="/img/atrium-wide.jpg" alt="Atrium" loading="lazy" />
+          <img src="img/atrium-wide.jpg" alt="Atrium" loading="lazy" />
         </figure>
         <div>
           <h3 class="heading" data-reveal>${t.concept.spacesTitle}</h3>
@@ -129,21 +129,6 @@ function render() {
 
   ${marquee()}
 
-  <section class="campaign">
-    <div class="wrap">
-      <div class="split">
-        <div>
-          <span class="kicker">PR & Media</span>
-          <h2 class="heading" data-reveal>${t.campaign.title}</h2>
-          <p class="lead" data-reveal style="--d:.1s">${t.campaign.lead}</p>
-        </div>
-        <ul class="chan">
-          ${t.campaign.items.map((i, n) => `<li data-reveal style="--d:${n * 0.07}s">${i}</li>`).join("")}
-        </ul>
-      </div>
-      <p class="goal" data-reveal><b>${t.campaign.goal}</b></p>
-    </div>
-  </section>
 
   <section class="gala dark">
     <div class="wrap gala-grid">
@@ -157,7 +142,7 @@ function render() {
         </ul>
         <p class="outro" data-reveal>${t.gala.outro}</p>
       </div>
-      <figure data-reveal="right"><img src="/img/gala.jpg" alt="Gala dinner" loading="lazy" /></figure>
+      <figure data-reveal="right"><img src="img/gala.jpg" alt="Gala dinner" loading="lazy" /></figure>
     </div>
   </section>
 
@@ -173,7 +158,7 @@ function render() {
           <p class="u-text" data-reveal>${t.unique.text}</p>
         </div>
         <figure class="u-photo frame" data-reveal="right">
-          <img src="/img/atrium-1.jpg" alt="Tbilisi" loading="lazy" />
+          <img src="img/atrium-1.jpg" alt="Tbilisi" loading="lazy" />
         </figure>
       </div>
     </div>
@@ -184,7 +169,7 @@ function render() {
       <span class="kicker">01 — ${lang === "ka" ? "თანამედროვე ევროპული ქალაქი" : "A modern European city"}</span>
       <h2 class="heading" data-reveal>${t.modern.title}</h2>
       <div class="display" data-reveal>${t.modern.display}</div>
-      <img class="pano" src="/img/modern-2.jpg" alt="Modern Tbilisi" loading="lazy" data-reveal />
+      <img class="pano" src="img/modern-2.jpg" alt="Modern Tbilisi" loading="lazy" data-reveal />
       <div class="cols">
         <p data-reveal>${t.modern.text1}</p>
         <p data-reveal style="--d:.12s">${t.modern.text2}</p>
@@ -199,9 +184,9 @@ function render() {
       <p class="lead" data-reveal style="--d:.1s">${t.tourist.intro}</p>
 
       <div class="mosaic">
-        <figure class="tall" data-reveal><img src="/img/kartlis-deda.jpg" alt="Kartlis Deda" loading="lazy" /></figure>
-        <figure class="sm" data-reveal style="--d:.1s"><img src="/img/oldtown.jpg" alt="Old Tbilisi" loading="lazy" /></figure>
-        <figure class="sm" data-reveal style="--d:.18s"><img src="/img/frida.jpg" alt="Tbilisi street art" loading="lazy" /></figure>
+        <figure class="tall" data-reveal><img src="img/kartlis-deda.jpg" alt="Kartlis Deda" loading="lazy" /></figure>
+        <figure class="sm" data-reveal style="--d:.1s"><img src="img/oldtown.jpg" alt="Old Tbilisi" loading="lazy" /></figure>
+        <figure class="sm" data-reveal style="--d:.18s"><img src="img/frida.jpg" alt="Tbilisi street art" loading="lazy" /></figure>
       </div>
 
       <div class="t-grid">
@@ -226,13 +211,13 @@ function render() {
       <span class="kicker">03 — ${lang === "ka" ? "კინო" : "Film"}</span>
       <h2 class="heading" data-reveal>${t.film.title}</h2>
       <div class="f-grid">
-        <figure class="tower" data-reveal="left"><img src="/img/tower.jpg" alt="Tbilisi architecture" loading="lazy" /></figure>
+        <figure class="tower" data-reveal="left"><img src="img/tower.jpg" alt="Tbilisi architecture" loading="lazy" /></figure>
         <div class="txts">
           <p data-reveal>${t.film.text1}</p>
           <p data-reveal style="--d:.12s">${t.film.text2}</p>
         </div>
       </div>
-      <figure class="wide" data-reveal><img src="/img/film-car.jpg" alt="Filming in Tbilisi — Freedom Square" loading="lazy" /></figure>
+      <figure class="wide" data-reveal><img src="img/film-car.jpg" alt="Filming in Tbilisi — Freedom Square" loading="lazy" /></figure>
     </div>
   </section>
 
@@ -244,13 +229,13 @@ function render() {
         <p data-reveal style="--d:.08s">${t.gastro.text1}</p>
         <p data-reveal style="--d:.16s">${t.gastro.text2}</p>
       </div>
-      <figure class="frame" data-reveal="right"><img src="/img/food.jpg" alt="Georgian cuisine" loading="lazy" /></figure>
+      <figure class="frame" data-reveal="right"><img src="img/food.jpg" alt="Georgian cuisine" loading="lazy" /></figure>
     </div>
   </section>
 
   <section class="forum">
     <div class="wrap">
-      <img class="wordmark" src="/img/logo-stack-black.png" alt="Welcome Tbilisi" data-reveal />
+      <img class="wordmark" src="img/logo-stack-black.png" alt="Welcome Tbilisi" data-reveal />
       <div class="sub" data-reveal style="--d:.08s">${t.forum.subtitle}</div>
       <p class="unites" data-reveal style="--d:.14s">${t.forum.unites}</p>
       <p class="goal" data-reveal style="--d:.2s"><b>${t.forum.goal}</b></p>
@@ -258,7 +243,7 @@ function render() {
   </section>
 
   <section class="partners">
-    <img class="bg" src="/img/partners.jpg" alt="" loading="lazy" />
+    <img class="bg" src="img/partners.jpg" alt="" loading="lazy" />
     <div class="overlay">
       <div class="card" data-reveal="right">
         <h2 class="heading">${t.partners.title}</h2>
@@ -271,7 +256,7 @@ function render() {
 
   <section class="economy">
     <div class="wrap e-grid">
-      <figure class="frame" data-reveal="left"><img src="/img/tourists.jpg" alt="Tourists in Tbilisi" loading="lazy" /></figure>
+      <figure class="frame" data-reveal="left"><img src="img/tourists.jpg" alt="Tourists in Tbilisi" loading="lazy" /></figure>
       <div>
         <span class="kicker">${lang === "ka" ? "ეფექტი" : "Impact"}</span>
         <h2 class="heading" data-reveal>${t.economy.title}</h2>
@@ -289,11 +274,11 @@ function render() {
       <h2 class="heading" data-reveal>${t.urban.title}</h2>
       <p class="lead" data-reveal style="--d:.1s">${t.urban.lead}</p>
       <div class="renders">
-        <figure class="span2" data-reveal><img src="/img/dev-4.jpg" alt="" loading="lazy" /></figure>
-        <figure data-reveal style="--d:.1s"><img src="/img/dev-1.jpg" alt="" loading="lazy" /></figure>
-        <figure data-reveal style="--d:.14s"><img src="/img/dev-2.jpg" alt="" loading="lazy" /></figure>
-        <figure data-reveal style="--d:.2s"><img src="/img/dev-3.jpg" alt="" loading="lazy" /></figure>
-        <figure data-reveal style="--d:.26s"><img src="/img/modern-1.jpg" alt="" loading="lazy" /></figure>
+        <figure class="span2" data-reveal><img src="img/dev-4.jpg" alt="" loading="lazy" /></figure>
+        <figure data-reveal style="--d:.1s"><img src="img/dev-1.jpg" alt="" loading="lazy" /></figure>
+        <figure data-reveal style="--d:.14s"><img src="img/dev-2.jpg" alt="" loading="lazy" /></figure>
+        <figure data-reveal style="--d:.2s"><img src="img/dev-3.jpg" alt="" loading="lazy" /></figure>
+        <figure data-reveal style="--d:.26s"><img src="img/modern-1.jpg" alt="" loading="lazy" /></figure>
       </div>
       <div class="u2">
         <p data-reveal><b>${t.urban.listLead}</b></p>
@@ -317,22 +302,6 @@ function render() {
     </div>
   </section>
 
-  <section class="pr">
-    <div class="wrap">
-      <span class="kicker">${lang === "ka" ? "კომუნიკაცია" : "Communication"}</span>
-      <h2 class="heading" data-reveal>${t.pr.title}</h2>
-      <div class="cols">
-        <div class="col" data-reveal>
-          <h3 class="heading">${t.pr.prTitle}</h3>
-          ${list(t.pr.prList, "chan")}
-        </div>
-        <div class="col" data-reveal style="--d:.12s">
-          <h3 class="heading">${t.pr.emailTitle}</h3>
-          ${list(t.pr.emailList, "chan")}
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="speakers-sec">
     <div class="wrap">
@@ -343,7 +312,7 @@ function render() {
           .map(
             (s, i) => `
         <div class="spk" data-reveal style="--d:${(i % 5) * 0.08}s">
-          <img src="/${s.img}" alt="${s.name}" loading="lazy" />
+          <img src="${s.img}" alt="${s.name}" loading="lazy" />
           <div class="nm">${s.name}</div>
         </div>`
           )
@@ -355,9 +324,9 @@ function render() {
   ${marquee()}
 
   <section class="finale">
-    <img class="watermark" src="/img/logo-figure.png" alt="" aria-hidden="true" />
+    <img class="watermark" src="img/logo-figure.png" alt="" aria-hidden="true" />
     <div class="wrap">
-      <img class="logo" src="/img/logo-h-black.png" alt="Welcome Tbilisi" data-reveal />
+      <img class="logo" src="img/logo-h-black.png" alt="Welcome Tbilisi" data-reveal />
       <h2 class="heading thanks" data-reveal style="--d:.1s">${t.finale.thanks}</h2>
       <p class="dates" data-reveal style="--d:.18s">${t.finale.dates}</p>
     </div>

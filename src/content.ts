@@ -32,12 +32,6 @@ export interface Content {
     access: string;
     stats: { value: number; suffix: string; label: string }[];
   };
-  campaign: {
-    title: string;
-    lead: string;
-    items: string[];
-    goal: string;
-  };
   gala: {
     title: string;
     lead: string;
@@ -106,13 +100,6 @@ export interface Content {
     lead: string;
     list: string[];
   };
-  pr: {
-    title: string;
-    prTitle: string;
-    prList: string[];
-    emailTitle: string;
-    emailList: string[];
-  };
   speakers: {
     title: string;
   };
@@ -179,19 +166,6 @@ const ka: Content = {
       { value: 150, suffix: "+", label: "ქართველი ექსპერტი" },
       { value: 10000, suffix: "", label: "სტუმარი" },
     ],
-  },
-  campaign: {
-    title: "საკომუნიკაციო და პოპულარიზაციის კამპანია",
-    lead: "ღონისძიების მასშტაბური საინფორმაციო კამპანია 25 აგვისტოდან დაიწყება და ორი თვის განმავლობაში მოიცავს მრავალარხიან კომუნიკაციას:",
-    items: [
-      "სატელევიზიო ეთერებსა და ინტერვიუებს",
-      "სოციალური მედიის ინტენსიურ კამპანიას",
-      "პროფესიონალურ ფოტო და ვიდეოგადაღებას",
-      "საერთაშორისო და ქართველი სპიკერების ვიდეომიმართვებს",
-      "ღონისძიების პროგრამისა და დღის წესრიგის ეტაპობრივ გამოქვეყნებას",
-      "პარტნიორი ორგანიზაციებისა და მედიის აქტიურ ჩართულობას",
-    ],
-    goal: "კამპანიის მთავარი მიზანია WELCOME TBILISI-ის, როგორც რეგიონის ერთ-ერთი ყველაზე მნიშვნელოვანი ღონისძიების პოზიციონირება, მაღალი ინტერესის შექმნა და ფართო აუდიტორიის მოზიდვა.",
   },
   gala: {
     title: "დასკვნითი ღონისძიება",
@@ -297,23 +271,6 @@ const ka: Content = {
       "პროფესიული ქსელის გაფართოებასა და B2B ურთიერთობების განვითარებას",
     ],
   },
-  pr: {
-    title: "მედია გეგმა",
-    prTitle: "PR კამპანია:",
-    prList: [
-      "პრესკონფერენცია / სატელევიზიო ეთერი პროექტის ანონსისთვის",
-      "ინტერვიუები სპიკერებთან",
-      "სტატიები ადგილობრივ და საერთაშორისო მედიაში",
-      "პრესრელიზების სერია",
-    ],
-    emailTitle: "Email Marketing:",
-    emailList: [
-      "სპიკერების ანონსი",
-      "რეგისტრაცია / აკრედიტაცია პანელური დისკუსიებისთვის",
-      "ღონისძიების პროგრამის განახლებები",
-      "პარტნიორების შეთავაზებები",
-    ],
-  },
   speakers: {
     title: "მოწვეული უცხოელი სპიკერები",
   },
@@ -367,19 +324,6 @@ const en: Content = {
       { value: 150, suffix: "+", label: "Georgian experts" },
       { value: 10000, suffix: "", label: "guests" },
     ],
-  },
-  campaign: {
-    title: "Communication & Promotion Campaign",
-    lead: "The event's large-scale information campaign launches on 25 August and will span two months of multi-channel communication:",
-    items: [
-      "Television broadcasts and interviews",
-      "An intensive social media campaign",
-      "Professional photo and video production",
-      "Video addresses from international and Georgian speakers",
-      "Step-by-step publication of the event programme and agenda",
-      "Active engagement of partner organisations and media",
-    ],
-    goal: "The main goal of the campaign is to position WELCOME TBILISI as one of the region's most significant events, generating high interest and attracting a wide audience.",
   },
   gala: {
     title: "Closing Event",
@@ -483,23 +427,6 @@ const en: Content = {
       "Initiating new investments and joint projects",
       "Raising the profile of Georgian companies among local and international audiences",
       "Expanding professional networks and developing B2B relationships",
-    ],
-  },
-  pr: {
-    title: "Media Plan",
-    prTitle: "PR campaign:",
-    prList: [
-      "Press conference / television broadcast to announce the project",
-      "Interviews with speakers",
-      "Articles in local and international media",
-      "A series of press releases",
-    ],
-    emailTitle: "Email Marketing:",
-    emailList: [
-      "Speaker announcements",
-      "Registration / accreditation for panel discussions",
-      "Event programme updates",
-      "Partner offers",
     ],
   },
   speakers: {

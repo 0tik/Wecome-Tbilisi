@@ -285,28 +285,11 @@ html[lang="ka"] b { font-weight: 400; background: linear-gradient(transparent 62
 .concept-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: calc(var(--sect) * .55); }
 .concept-cards .card { background: var(--gray); padding: clamp(24px, 3vw, 44px); }
 
-/* ---------- campaign ---------- */
-.campaign .split { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 5vw, 80px); }
-.chan { list-style: none; }
-.chan li {
-  display: flex; gap: 20px; align-items: baseline;
-  padding: 16px 0; border-top: 1px solid var(--line);
-}
-.chan li:last-child { border-bottom: 1px solid var(--line); }
-.chan li::before {
-  content: "→";
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  flex: 0 0 auto;
-}
-.campaign .goal { margin-top: 44px; font-size: clamp(16px, 1.5vw, 22px); max-width: 52em; }
-
 /* ---------- dark sections ---------- */
 .dark { background: var(--ink); color: #ececea; }
 .dark .kicker { color: #9a9a95; }
 .dark .kicker::before { background: #fff; }
 .dark h2 { color: #fff; }
-.dark .chan li, .dark .chan li:last-child { border-color: #333; }
 html[lang="ka"] .dark b { background: linear-gradient(transparent 62%, rgba(255,255,255,.22) 62%); }
 
 .gala-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(30px, 5vw, 80px); align-items: center; }
@@ -461,13 +444,8 @@ html[lang="en"] .quote { font-family: "Montserrat", sans-serif; font-weight: 700
 /* ---------- business ---------- */
 .business .split { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(30px, 5vw, 80px); }
 
-/* ---------- pr ---------- */
-.pr { background: var(--gray); }
-.pr .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.pr .col { background: var(--paper); padding: clamp(24px, 3vw, 44px); }
-.pr .col h3 { font-size: clamp(17px, 1.7vw, 23px); margin-bottom: 20px; }
-
 /* ---------- speakers ---------- */
+.speakers-sec { background: var(--gray); }
 .speakers-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -518,12 +496,13 @@ html[lang="en"] .quote { font-family: "Montserrat", sans-serif; font-weight: 700
 
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {
-  .facts-grid, .concept-top, .spaces, .campaign .split, .gala-grid,
+  .facts-grid, .concept-top, .spaces, .gala-grid,
   .unique .u-grid, .modern .cols, .tourist .t-grid, .film .f-grid,
   .gastro .g-grid, .economy .e-grid, .urban .u2, .business .split,
-  .pr .cols, .concept-cards, .tourist .edu { grid-template-columns: 1fr; }
+  .concept-cards, .tourist .edu { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, 1fr); gap: 34px 20px; }
-  .speakers-grid { grid-template-columns: repeat(3, 1fr); }
+  .speakers-sec { background: var(--gray); }
+.speakers-grid { grid-template-columns: repeat(3, 1fr); }
   .tourist .mosaic { grid-template-columns: 1fr; }
   .tourist .mosaic .tall img { aspect-ratio: 4/3; }
   .partners .overlay { position: static; background: none; }
@@ -535,7 +514,8 @@ html[lang="en"] .quote { font-family: "Montserrat", sans-serif; font-weight: 700
   .frame::after { display: none; }
 }
 @media (max-width: 560px) {
-  .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+  .speakers-sec { background: var(--gray); }
+.speakers-grid { grid-template-columns: repeat(2, 1fr); }
   .site-head .brand { height: 38px; width: 80px; }
   .urban .renders { grid-template-columns: 1fr; }
   .urban .renders .span2 { grid-column: span 1; }
