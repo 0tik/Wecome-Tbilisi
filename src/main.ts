@@ -12,6 +12,7 @@ function getLang(): Lang {
 }
 
 let lang: Lang = getLang();
+let activeDay = 0;
 
 const list = (items: string[], cls: string) =>
   `<ul class="${cls}">${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
@@ -35,7 +36,9 @@ function render() {
       <img class="b-white" src="img/logo-h-white.png" alt="" />
       <img class="b-black" src="img/logo-h-black.png" alt="Welcome Tbilisi" />
     </a>
-    <button class="lang-btn" id="langBtn">${t.nav.lang}</button>
+    <button class="lang-btn" id="langBtn" aria-label="${lang === "ka" ? "Switch to English" : "ქართულზე გადართვა"}">
+      <span>${lang === "ka" ? "ENG" : "ქარ"}</span>
+    </button>
   </header>
 
   <section class="hero" id="top">
@@ -72,10 +75,15 @@ function render() {
         <h3 class="heading">${t.facts.supportersTitle}</h3>
         ${list(t.facts.supporters, "sup")}
         <div class="sup-logos">
-          <img src="img/sup-mayor.png" alt="${t.facts.supporters[0]}" loading="lazy" />
-          <img src="img/sup-coat.png" alt="${t.facts.supporters[2]}" loading="lazy" />
-          <img src="img/sup-georgia.png" alt="${t.facts.supporters[3]}" loading="lazy" />
-          <img src="img/sup-creative.png" alt="${t.facts.supporters[1]}" loading="lazy" />
+          <div class="row">
+            <img src="img/sup-mayor.png" alt="${t.facts.supporters[0]}" loading="lazy" />
+            <img src="img/sup-coat.png" alt="${t.facts.supporters[2]}" loading="lazy" />
+            <img src="img/sup-creative.png" alt="${t.facts.supporters[1]}" loading="lazy" />
+          </div>
+          <div class="row r2">
+            <img src="img/sup-georgia.png" alt="${t.facts.supporters[3]}" loading="lazy" />
+            <img class="wide" src="img/sup-next.png" alt="NEXT" loading="lazy" />
+          </div>
         </div>
       </div>
     </div>
@@ -120,12 +128,60 @@ function render() {
           .join("")}
       </div>
 
-      <div class="concept-cards">
-        <div class="card" data-reveal>${t.concept.experts}</div>
-        <div class="card" data-reveal style="--d:.12s">${t.concept.access}</div>
-      </div>
     </div>
   </section>
+
+  <section class="agenda">
+    <div class="wrap">
+      <span class="kicker">${lang === "ka" ? "პროგრამა" : "Programme"}</span>
+      <h2 class="heading" data-reveal>${t.agenda.title}</h2>
+      <p class="lead" data-reveal style="--d:.08s">${t.agenda.lead}</p>
+
+      <div class="day-tabs" role="tablist" data-reveal style="--d:.14s">
+        ${t.agenda.days
+          .map(
+            (d, i) => `
+        <button class="day-tab ${i === activeDay ? "on" : ""}" role="tab" aria-selected="${i === activeDay}" data-day="${i}">
+          <span class="dn">${d.num}</span>
+          <span class="dd">${d.date}</span>
+        </button>`
+          )
+          .join("")}
+      </div>
+
+      ${t.agenda.days
+        .map(
+          (d, i) => `
+      <div class="day-panel ${i === activeDay ? "on" : ""}" role="tabpanel" data-day="${i}">
+        <h3 class="heading theme">${d.theme}</h3>
+        <ol class="sessions">
+          ${d.items
+            .map(
+              (it) => `
+          <li>
+            <span class="tm">${it.time}</span>
+            <span class="tt">${it.title}</span>
+          </li>`
+            )
+            .join("")}
+        </ol>
+      </div>`
+        )
+        .join("")}
+    </div>
+  </section>
+
+  <div class="tickets-sec">
+    <div class="tickets-band">
+      <div class="wrap tickets-cta">
+        <p data-reveal>${t.concept.experts}</p>
+        <p data-reveal style="--d:.08s">${t.concept.tickets}</p>
+        <a class="tkt-link" data-reveal style="--d:.16s" href="https://tkt.ge/WelcomeTbilisi2026" target="_blank" rel="noopener">
+          <span>${t.concept.ticketLabel}</span><img src="img/tkt-logo.svg" alt="TKT.GE" /><span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   ${marquee()}
 
@@ -323,6 +379,10 @@ function render() {
 
   ${marquee()}
 
+  <a class="sticky-tkt" id="stickyTkt" href="https://tkt.ge/WelcomeTbilisi2026" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
+    <span>${t.concept.ticketLabel}</span><img src="img/tkt-logo.svg" alt="" /><span class="arr">→</span>
+  </a>
+
   <section class="finale">
     <img class="watermark" src="img/logo-figure.png" alt="" aria-hidden="true" />
     <div class="wrap">
@@ -356,9 +416,38 @@ function bind() {
     }, 280);
   });
 
-  // header state
+  // agenda day tabs
+  document.querySelectorAll<HTMLButtonElement>(".day-tab").forEach((tab) =>
+    tab.addEventListener("click", () => {
+      const i = Number(tab.dataset.day);
+      if (i === activeDay) return;
+      activeDay = i;
+      document.querySelectorAll(".day-tab").forEach((el, n) => {
+        el.classList.toggle("on", n === i);
+        el.setAttribute("aria-selected", String(n === i));
+      });
+      document.querySelectorAll(".day-panel").forEach((el, n) => el.classList.toggle("on", n === i));
+    })
+  );
+
+  // header state + sticky ticket bar (mobile)
   const head = document.getElementById("siteHead")!;
-  const onScroll = () => head.classList.toggle("solid", window.scrollY > window.innerHeight * 0.72);
+  const sticky = document.getElementById("stickyTkt")!;
+  let ctaInView = false;
+  const onScroll = () => {
+    head.classList.toggle("solid", window.scrollY > window.innerHeight * 0.72);
+    const show = window.scrollY > window.innerHeight * 0.9 && !ctaInView;
+    sticky.classList.toggle("show", show);
+    sticky.setAttribute("aria-hidden", show ? "false" : "true");
+    sticky.tabIndex = show ? 0 : -1;
+  };
+  const band = document.querySelector(".tickets-band");
+  if (band) {
+    new IntersectionObserver((entries) => {
+      ctaInView = entries[0].isIntersecting;
+      onScroll();
+    }).observe(band);
+  }
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 

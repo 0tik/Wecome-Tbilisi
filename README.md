@@ -35,7 +35,7 @@ Pages to serve the site on that domain. DNS records to set at the registrar:
 | A     | @    | 185.199.109.153     |
 | A     | @    | 185.199.110.153     |
 | A     | @    | 185.199.111.153     |
-| CNAME | www  | `<username>.github.io` |
+| CNAME | www  | `0tik.github.io`    |
 
 Then in the repo: *Settings → Pages → Custom domain* → enter `welcometbilisi.ge`,
 wait for the DNS check, and tick **Enforce HTTPS**.

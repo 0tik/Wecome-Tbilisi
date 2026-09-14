@@ -29,7 +29,8 @@ export interface Content {
     formatsLabel: string;
     formats: string[];
     experts: string;
-    access: string;
+    tickets: string;
+    ticketLabel: string;
     stats: { value: number; suffix: string; label: string }[];
   };
   gala: {
@@ -38,6 +39,11 @@ export interface Content {
     invitedTitle: string;
     invited: string[];
     outro: string;
+  };
+  agenda: {
+    title: string;
+    lead: string;
+    days: { num: string; date: string; theme: string; items: { time: string; title: string }[] }[];
   };
   unique: {
     kicker: string;
@@ -130,7 +136,7 @@ const ka: Content = {
     venue: "თბილისის საკრებულოს შენობა",
   },
   mission: {
-    text: "ღონისძიების მიზანია თბილისის, როგორც <b>თანამედროვე</b>, <b>დინამიკური</b> და <b>საერთაშორისო</b> მასშტაბით კონკურენტუნარიანი ქალაქის პოზიციონირება და პოპულარიზაცია. ღონისძიება წარმოაჩენს იმ <b>მნიშვნელოვან პროგრესს</b>, რომელსაც ქალაქმა მიაღწია თანამედროვე არქიტექტურის, შემოქმედებითი ინდუსტრიების, კულტურის, ტურიზმისა და გასტრონომიის მიმართულებით, ასევე წარმოაჩენს <b>თბილისის უნიკალურ შესაძლებლობას</b>, წარმატებით შეუთავსოს ისტორიული მემკვიდრეობა თანამედროვე ურბანულ განვითარებას",
+    text: "ღონისძიების მიზანია თბილისის, როგორც <b>თანამედროვე</b>, <b>დინამიკური</b> და <b>საერთაშორისო</b> მასშტაბით კონკურენტუნარიანი ქალაქის პოზიციონირება. პროექტი წარმოაჩენს <b>დედაქალაქის პროგრესს</b> თანამედროვე არქიტექტურის, შემოქმედებითი ინდუსტრიების, კულტურის, ტურიზმისა და გასტრონომიის სფეროებში. ამასთან, იგი ხაზს უსვამს <b>თბილისის უნიკალურ უნარს</b> — ჰარმონიულად შეუხამოს ისტორიული მემკვიდრეობა თანამედროვე ურბანულ განვითარებას.",
   },
   facts: {
     title: "ღონისძიების მხარდამჭერები:",
@@ -140,6 +146,7 @@ const ka: Content = {
       "სსიპ შემოქმედებითი საქართველო",
       "საქართველოს კულტურის სამინისტრო",
       "საქართველოს ტურიზმის ეროვნული ადმინისტრაცია",
+      "NEXT",
     ],
     visitorsLabel: "ვიზიტორთა რაოდენობა",
     visitorsValue: 10000,
@@ -147,8 +154,8 @@ const ka: Content = {
   },
   concept: {
     title: "ღონისძიების კონცეფცია",
-    lead: "თბილისის საკრებულოს შენობა სამი დღის განმავლობაში გადაიქცევა ქალაქის თანამედროვე მიღწევების, შესაძლებლობების, გამოცდილების გაზიარებისა და პროფესიული თანამშრომლობის საერთაშორისო პლატფორმად,",
-    side: "სადაც ერთ სივრცეში გაერთიანდებიან მსოფლიოს სხვადასხვა ქვეყნიდან მოწვეული სპიკერები, საქართველოს წამყვანი დარგობრივი ექსპერტები, ბიზნესის, განათლების, სახელმწიფო და კერძო სექტორის წარმომადგენლები.",
+    lead: "სამი დღის განმავლობაში თბილისის საკრებულოს შენობა გადაიქცევა საერთაშორისო პლატფორმად, რომელიც ქალაქის თანამედროვე მიღწევებს, გამოცდილების გაზიარებასა და პროფესიულ თანამშრომლობას დაეთმობა.",
+    side: "ეს სივრცე ერთად მოუყრის თავს საერთაშორისო სპიკერებს, ადგილობრივ წამყვან ექსპერტებსა და ბიზნესის, განათლების, და კერძო სექტორის წარმომადგენლებს.",
     spacesTitle: "ღონისძიება ერთდროულად სამ დამოუკიდებელ საკონფერენციო სივრცეში გაიმართება,",
     formatsLabel: "სადაც უწყვეტ რეჟიმში ჩატარდება:",
     formats: [
@@ -158,12 +165,13 @@ const ka: Content = {
       "B2B შეხვედრები",
       "მასტერკლასები",
     ],
-    experts: "სამი დღის განმავლობაში მონაწილეებს ექნებათ შესაძლებლობა, დაესწრონ საერთაშორისო დონის მოწვეული სპიკერების გამოსვლებს, ასევე გაეცნონ 150-ზე მეტი ქართველი დარგობრივი ექსპერტის გამოცდილებასა და პრაქტიკულ ცოდნას.",
-    access: "ღონისძიებაზე დასწრება შესაძლებელი იქნება მხოლოდ წინასწარი რეგისტრაციითა და სპეციალური მოსაწვევებით, რაც უზრუნველყოფს მონაწილეთა ეფექტურ მართვასა და მაღალი ხარისხის გამოცდილებას.",
+    experts: "სამი დღის განმავლობაში მონაწილეებს ექნებათ შესაძლებლობა, დაესწრონ საერთაშორისო დონის მოწვეული სპიკერების გამოსვლებს, ასევე გაეცნონ 50-ზე მეტი ქართველი დარგობრივი ექსპერტის გამოცდილებასა და პრაქტიკულ ცოდნას.",
+    tickets: "ღონისძიებაზე დასწრება შესაძლებელია პლატფორმა TKT.GE-ზე ბილეთების შეძენით:",
+    ticketLabel: "ბილეთების შეძენა",
     stats: [
       { value: 3, suffix: "", label: "დღე" },
       { value: 3, suffix: "", label: "საკონფერენციო სივრცე" },
-      { value: 150, suffix: "+", label: "ქართველი ექსპერტი" },
+      { value: 50, suffix: "+", label: "ქართველი ექსპერტი" },
       { value: 10000, suffix: "", label: "სტუმარი" },
     ],
   },
@@ -178,6 +186,50 @@ const ka: Content = {
       "ღონისძიების მხარდამჭერები და საპატიო სტუმრები",
     ],
     outro: "გალა ვახშამი იქნება სამი დღის წარმატებული თანამშრომლობის, ახალი პარტნიორული ურთიერთობების და მომავალი საერთაშორისო პროექტების დასაწყისის სიმბოლო, სადაც მონაწილეებს არაფორმალურ გარემოში ექნებათ ურთიერთობის, გამოცდილების გაზიარებისა და საქმიანი კავშირების გაღრმავების შესაძლებლობა.",
+  },
+  agenda: {
+    title: "დღის წესრიგი",
+    lead: "სამი დღე, სამი თემა — პანელური დისკუსიები ყოველდღე 12:00-დან.",
+    days: [
+      {
+        num: "დღე 01",
+        date: "23 ოქტომბერი",
+        theme: "თანამედროვე თბილისი: შემდეგი თავი",
+        items: [
+          { time: "12:00", title: "ქალაქი როგორც ისტორია: რა ხდის თანამედროვე თბილისს უნიკალურს?" },
+          { time: "13:30", title: "ლოკაციიდან დანიშნულების ადგილამდე: შეძლებს თუ არა კინო თბილისის გლობალურ რუკაზე დამკვიდრებას?" },
+          { time: "15:00", title: "თბილისი — კინემატოგრაფისტების ქალაქი: რას ხედავს საერთაშორისო ინდუსტრია?" },
+          { time: "16:30", title: "გლობალური ქალაქის მშენებლობა: როგორ მიიპყროს თბილისმა საერთაშორისო ყურადღება?" },
+          { time: "18:00", title: "კრეატიულობა, კულტურა და ახალი თბილისი: ვინ აყალიბებს ქალაქს?" },
+          { time: "19:30", title: "შემდეგი თავი: როგორი უნდა გახდეს თბილისი?" },
+        ],
+      },
+      {
+        num: "დღე 02",
+        date: "24 ოქტომბერი",
+        theme: "თბილისი: მომავლისთვის შექმნილი",
+        items: [
+          { time: "12:00", title: "ვინ ქმნის ახალი თბილისის დიზაინს?" },
+          { time: "13:30", title: "არქიტექტურა როგორც დანიშნულების ადგილი: შეუძლია თუ არა დიზაინს შეცვალოს, როგორ ხედავს მსოფლიო თბილისს?" },
+          { time: "15:00", title: "რას ხედავენ კინომწარმოებლები, რასაც დეველოპერები ვერ ამჩნევენ?" },
+          { time: "16:30", title: "მემკვიდრეობა თუ მომავალი: როგორ უნდა განვითარდეს თბილისი?" },
+          { time: "18:00", title: "პროექტიდან ადგილამდე: რა ხდის განაშენიანებას იკონურს?" },
+          { time: "19:30", title: "შემდეგი თბილისის დიზაინი: როგორი უნდა იყოს ქალაქი 2035 წელს?" },
+        ],
+      },
+      {
+        num: "დღე 03",
+        date: "25 ოქტომბერი",
+        theme: "თბილისი: ტურიზმი, გასტრონომია და კრეატიული ცხოვრების სტილი",
+        items: [
+          { time: "12:00", title: "ტურიზმის მიღმა: გამოცდილების შეთავაზება" },
+          { time: "13:30", title: "ქართული სამზარეულოდან გლობალურ სამზარეულომდე" },
+          { time: "15:00", title: "თბილისი ღამით: კულტურა, ღამის ცხოვრება და კრეატიული ეკონომიკა" },
+          { time: "16:30", title: "ლოკალურიდან გლობალურამდე: გახდება თუ არა თბილისი კრეატიული ცხოვრების სტილის მიმართულება?" },
+          { time: "18:00", title: "თბილისის გემო: გასტრონომია როგორც ქალაქის გლობალური ბრენდი" },
+        ],
+      },
+    ],
   },
   unique: {
     kicker: "WELCOME TBILISI",
@@ -288,7 +340,7 @@ const en: Content = {
     venue: "Tbilisi City Assembly Building",
   },
   mission: {
-    text: "The goal of the event is to position and promote Tbilisi as a <b>modern</b>, <b>dynamic</b> and <b>internationally competitive</b> city. The event showcases the <b>significant progress</b> the city has achieved in contemporary architecture, creative industries, culture, tourism and gastronomy, and highlights <b>Tbilisi's unique ability</b> to successfully blend its historical heritage with modern urban development",
+    text: "The goal of the event is to position Tbilisi as a <b>modern</b>, <b>dynamic</b> and <b>internationally competitive</b> city. The project showcases the <b>capital's progress</b> in contemporary architecture, the creative industries, culture, tourism and gastronomy. It also highlights <b>Tbilisi's unique ability</b> to harmoniously blend its historical heritage with modern urban development.",
   },
   facts: {
     title: "Event supporters:",
@@ -298,6 +350,7 @@ const en: Content = {
       "LEPL Creative Georgia",
       "Ministry of Culture of Georgia",
       "Georgian National Tourism Administration",
+      "NEXT",
     ],
     visitorsLabel: "Number of visitors",
     visitorsValue: 10000,
@@ -305,8 +358,8 @@ const en: Content = {
   },
   concept: {
     title: "Event Concept",
-    lead: "For three days, the Tbilisi City Assembly building will transform into an international platform for the city's modern achievements, opportunities, experience sharing and professional collaboration,",
-    side: "bringing together in one space invited speakers from around the world, Georgia's leading industry experts, and representatives of business, education, and the public and private sectors.",
+    lead: "For three days, the Tbilisi City Assembly building will transform into an international platform dedicated to the city's modern achievements, experience sharing and professional collaboration.",
+    side: "The space will bring together international speakers, leading local experts, and representatives of business, education and the private sector.",
     spacesTitle: "The event will run simultaneously across three independent conference spaces,",
     formatsLabel: "hosting non-stop:",
     formats: [
@@ -316,12 +369,13 @@ const en: Content = {
       "B2B meetings",
       "Masterclasses",
     ],
-    experts: "Over three days, participants will have the opportunity to attend talks by invited international speakers and discover the experience and practical knowledge of more than 150 Georgian industry experts.",
-    access: "Attendance will be possible only through advance registration and special invitations, ensuring effective participant management and a high-quality experience.",
+    experts: "Over three days, participants will have the opportunity to attend talks by invited international speakers and discover the experience and practical knowledge of more than 50 Georgian industry experts.",
+    tickets: "Attend the event by purchasing tickets on the TKT.GE platform:",
+    ticketLabel: "Buy tickets",
     stats: [
       { value: 3, suffix: "", label: "days" },
       { value: 3, suffix: "", label: "conference spaces" },
-      { value: 150, suffix: "+", label: "Georgian experts" },
+      { value: 50, suffix: "+", label: "Georgian experts" },
       { value: 10000, suffix: "", label: "guests" },
     ],
   },
@@ -336,6 +390,50 @@ const en: Content = {
       "Event supporters and guests of honour",
     ],
     outro: "The gala dinner will be a symbol of three days of successful collaboration, new partnerships and the beginning of future international projects — an informal setting for networking, sharing experience and deepening business connections.",
+  },
+  agenda: {
+    title: "Agenda",
+    lead: "Three days, three themes — panel discussions daily from 12:00.",
+    days: [
+      {
+        num: "Day 01",
+        date: "23 October",
+        theme: "Modern Tbilisi: The Next Chapter",
+        items: [
+          { time: "12:00", title: "The city is the story: what makes modern Tbilisi unique?" },
+          { time: "13:30", title: "From location to destination: can film put Tbilisi on the global map?" },
+          { time: "15:00", title: "Tbilisi as a filmmaker's city: what does the international industry see?" },
+          { time: "16:30", title: "Building a global city: how can Tbilisi attract international attention?" },
+          { time: "18:00", title: "Creativity, culture & the new Tbilisi: who is shaping the city?" },
+          { time: "19:30", title: "The next chapter: what should Tbilisi become?" },
+        ],
+      },
+      {
+        num: "Day 02",
+        date: "24 October",
+        theme: "Tbilisi: Designed for the Future",
+        items: [
+          { time: "12:00", title: "Who is designing the new Tbilisi?" },
+          { time: "13:30", title: "Architecture as a destination: can design change how the world sees Tbilisi?" },
+          { time: "15:00", title: "What can filmmakers see that developers don't?" },
+          { time: "16:30", title: "Heritage vs. future: how should Tbilisi develop?" },
+          { time: "18:00", title: "From project to place: what makes a development iconic?" },
+          { time: "19:30", title: "Designing the next Tbilisi: what should the city look like in 2035?" },
+        ],
+      },
+      {
+        num: "Day 03",
+        date: "25 October",
+        theme: "Tbilisi: Tourism, Gastronomy & Creative Lifestyle",
+        items: [
+          { time: "12:00", title: "Beyond tourism: selling an experience" },
+          { time: "13:30", title: "From Georgian cuisine to global cuisine" },
+          { time: "15:00", title: "Tbilisi after dark: culture, nightlife & the creative economy" },
+          { time: "16:30", title: "From local to global: can Tbilisi become a creative lifestyle destination?" },
+          { time: "18:00", title: "The taste of Tbilisi: gastronomy as a global city brand" },
+        ],
+      },
+    ],
   },
   unique: {
     kicker: "WELCOME TBILISI",
