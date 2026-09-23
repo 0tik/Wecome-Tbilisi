@@ -81,7 +81,7 @@ function render() {
             <img src="img/sup-creative.png" alt="${t.facts.supporters[1]}" loading="lazy" />
           </div>
           <div class="row r2">
-            <img src="img/sup-georgia1.png" alt="${t.facts.supporters[3]}" loading="lazy" />
+            <img src="img/sup-georgia.png" alt="${t.facts.supporters[3]}" loading="lazy" />
             <img class="wide" src="img/sup-next.png" alt="NEXT" loading="lazy" />
           </div>
         </div>
