@@ -17,9 +17,6 @@ export interface Content {
     title: string;
     supportersTitle: string;
     supporters: string[];
-    visitorsLabel: string;
-    visitorsValue: number;
-    visitorsSuffix: string;
   };
   concept: {
     title: string;
@@ -43,7 +40,18 @@ export interface Content {
   agenda: {
     title: string;
     lead: string;
-    days: { num: string; date: string; theme: string; items: { time: string; title: string }[] }[];
+    days: {
+      num: string;
+      date: string;
+      theme: string;
+      items: {
+        time: string;
+        title: string;
+        subtitle?: string;
+        note?: string;
+        speakers?: { name: string; role: string }[];
+      }[];
+    }[];
   };
   unique: {
     kicker: string;
@@ -148,9 +156,6 @@ const ka: Content = {
       "საქართველოს ტურიზმის ეროვნული ადმინისტრაცია",
       "NEXT",
     ],
-    visitorsLabel: "ვიზიტორთა რაოდენობა",
-    visitorsValue: 10000,
-    visitorsSuffix: " სტუმარი",
   },
   concept: {
     title: "ღონისძიების კონცეფცია",
@@ -172,7 +177,6 @@ const ka: Content = {
       { value: 3, suffix: "", label: "დღე" },
       { value: 3, suffix: "", label: "საკონფერენციო სივრცე" },
       { value: 50, suffix: "+", label: "ქართველი ექსპერტი" },
-      { value: 10000, suffix: "", label: "სტუმარი" },
     ],
   },
   gala: {
@@ -201,7 +205,7 @@ const ka: Content = {
           { time: "15:00", title: "თბილისი — კინემატოგრაფისტების ქალაქი: რას ხედავს საერთაშორისო ინდუსტრია?" },
           { time: "16:30", title: "გლობალური ქალაქის მშენებლობა: როგორ მიიპყროს თბილისმა საერთაშორისო ყურადღება?" },
           { time: "18:00", title: "კრეატიულობა, კულტურა და ახალი თბილისი: ვინ აყალიბებს ქალაქს?" },
-          { time: "19:30", title: "შემდეგი თავი: როგორი უნდა გახდეს თბილისი?" },
+          { time: "19:30", title: "შემდეგი თავი: როგორი უნდა გახდეს თბილისი?", note: "დახურული სესია — მხოლოდ მოწვევით" },
         ],
       },
       {
@@ -209,12 +213,12 @@ const ka: Content = {
         date: "24 ოქტომბერი",
         theme: "თბილისი: მომავლისთვის შექმნილი",
         items: [
-          { time: "12:00", title: "ვინ ქმნის ახალი თბილისის დიზაინს?" },
-          { time: "13:30", title: "არქიტექტურა როგორც დანიშნულების ადგილი: შეუძლია თუ არა დიზაინს შეცვალოს, როგორ ხედავს მსოფლიო თბილისს?" },
+          { time: "12:00", title: "ვინ ქმნის ახალი თბილისის დიზაინს?", subtitle: "სადაც ტურიზმი, გასტრონომია და კრეატიულობა ქმნის ქალაქის ახალ თავს" },
+          { time: "13:30", title: "არქიტექტურა როგორც დანიშნულების ადგილი: შეუძლია თუ არა დიზაინს შეცვალოს, როგორ ხედავს მსოფლიო თბილისს?", subtitle: "თბილისი ობიექტივში: არქიტექტურა როგორც აქტივი გლობალური კინოინდუსტრიისთვის" },
           { time: "15:00", title: "რას ხედავენ კინომწარმოებლები, რასაც დეველოპერები ვერ ამჩნევენ?" },
           { time: "16:30", title: "მემკვიდრეობა თუ მომავალი: როგორ უნდა განვითარდეს თბილისი?" },
-          { time: "18:00", title: "პროექტიდან ადგილამდე: რა ხდის განაშენიანებას იკონურს?" },
-          { time: "19:30", title: "შემდეგი თბილისის დიზაინი: როგორი უნდა იყოს ქალაქი 2035 წელს?" },
+          { time: "18:00", title: "პროექტიდან ადგილამდე: რა ხდის განაშენიანებას იკონურს?", note: "კურატორი — NEXT" },
+          { time: "19:30", title: "შემდეგი თბილისის დიზაინი: როგორი უნდა იყოს ქალაქი 2035 წელს?", subtitle: "როგორი უნდა იყოს მომავლის თბილისი — ვიზუალურად, ფუნქციურად, შეგრძნებით?" },
         ],
       },
       {
@@ -223,10 +227,10 @@ const ka: Content = {
         theme: "თბილისი: ტურიზმი, გასტრონომია და კრეატიული ცხოვრების სტილი",
         items: [
           { time: "12:00", title: "ტურიზმის მიღმა: გამოცდილების შეთავაზება" },
-          { time: "13:30", title: "ქართული სამზარეულოდან გლობალურ სამზარეულომდე" },
+          { time: "13:30", title: "ქართული სამზარეულოდან გლობალურ სამზარეულომდე", note: "დახურული მასტერკლასი საერთაშორისო სტუმრებისთვის — კურატორი Marriott" },
           { time: "15:00", title: "თბილისი ღამით: კულტურა, ღამის ცხოვრება და კრეატიული ეკონომიკა" },
           { time: "16:30", title: "ლოკალურიდან გლობალურამდე: გახდება თუ არა თბილისი კრეატიული ცხოვრების სტილის მიმართულება?" },
-          { time: "18:00", title: "თბილისის გემო: გასტრონომია როგორც ქალაქის გლობალური ბრენდი" },
+          { time: "18:00", title: "თბილისის გემო: გასტრონომია როგორც ქალაქის გლობალური ბრენდი", note: "დასწრება მხოლოდ VIP პასით" },
         ],
       },
     ],
@@ -352,9 +356,6 @@ const en: Content = {
       "Georgian National Tourism Administration",
       "NEXT",
     ],
-    visitorsLabel: "Number of visitors",
-    visitorsValue: 10000,
-    visitorsSuffix: " guests",
   },
   concept: {
     title: "Event Concept",
@@ -376,7 +377,6 @@ const en: Content = {
       { value: 3, suffix: "", label: "days" },
       { value: 3, suffix: "", label: "conference spaces" },
       { value: 50, suffix: "+", label: "Georgian experts" },
-      { value: 10000, suffix: "", label: "guests" },
     ],
   },
   gala: {
@@ -400,12 +400,45 @@ const en: Content = {
         date: "23 October",
         theme: "Modern Tbilisi: The Next Chapter",
         items: [
-          { time: "12:00", title: "The city is the story: what makes modern Tbilisi unique?" },
-          { time: "13:30", title: "From location to destination: can film put Tbilisi on the global map?" },
-          { time: "15:00", title: "Tbilisi as a filmmaker's city: what does the international industry see?" },
-          { time: "16:30", title: "Building a global city: how can Tbilisi attract international attention?" },
-          { time: "18:00", title: "Creativity, culture & the new Tbilisi: who is shaping the city?" },
-          { time: "19:30", title: "The next chapter: what should Tbilisi become?" },
+          { time: "12:00", title: "The city is the story: what makes modern Tbilisi unique?",
+          speakers: [
+            { name: "Becky Brake", role: "Hollywood Supervising Location Manager, Location Scout & Producer" },
+            { name: "Shaad Heerah", role: "Regional Director, Eastern Europe & Central Asia, Tierra Hospitality Partners" },
+            { name: "Irakli Makatsaria", role: "Producer & Founder, MAQ Entertainment" },
+            { name: "Rati Morchiladze", role: "CEO & Chief Investment Officer, Foresight Investment Group" },
+            { name: "NEXT Group", role: "Real Estate Developer · Hospitality & Branded Residences" },
+          ] },
+          { time: "13:30", title: "From location to destination: can film put Tbilisi on the global map?",
+          speakers: [
+            { name: "Patrick Mignano", role: "Hollywood Location Manager & Filmmaker" },
+            { name: "Shani Orona", role: "Award-Winning Location Manager" },
+            { name: "Iryna Hrinko", role: "International Film Producer & Founder, SE Films Studio" },
+            { name: "Oz Vidal", role: "International Film & Television Producer" },
+          ] },
+          { time: "15:00", title: "Tbilisi as a filmmaker's city: what does the international industry see?",
+          speakers: [
+            { name: "Shahar Stroh", role: "Film Producer & Development Executive, Moonstone Entertainment" },
+            { name: "Shota Alania", role: "Producer & Partner, Münchhausen Productions Georgia" },
+            { name: "Luka Lebanidze", role: "POSTRED" },
+            { name: "Mariam Vosuments", role: "Film Producer & Head of Development, Cuba Films" },
+          ] },
+          { time: "16:30", title: "Building a global city: how can Tbilisi attract international attention?",
+          speakers: [
+            { name: "Harry Johnson", role: "Managing Partner, Tierra Hospitality Partners" },
+            { name: "Elene Otarashvili", role: "Regional Director, Eastern Europe & Asia, Tierra Hospitality Partners" },
+            { name: "Michael J. Burmeister", role: "Hollywood Location Manager" },
+            { name: "Khaled Ben Younes", role: "Executive Producer & Co-Founder, The Creator Space" },
+            { name: "Aleksandre Kvaratskhelia", role: "General Manager, Tbilisi Marriott, Courtyard by Marriott Tbilisi & Moxy Tbilisi" },
+          ] },
+          { time: "18:00", title: "Creativity, culture & the new Tbilisi: who is shaping the city?",
+          speakers: [
+            { name: "Lori Balton", role: "Hollywood Location Scout" },
+            { name: "Sandro Gabilaia", role: "Founder, Industria Films" },
+            { name: "Beka Pkhakadze", role: "Founder & Creative Director, STIPFOLD" },
+            { name: "David Legrand", role: "Executive Chef" },
+          ] },
+          { time: "19:30", title: "The next chapter: what should Tbilisi become?",
+          note: "Exclusive private session — by invitation only" },
         ],
       },
       {
@@ -413,12 +446,42 @@ const en: Content = {
         date: "24 October",
         theme: "Tbilisi: Designed for the Future",
         items: [
-          { time: "12:00", title: "Who is designing the new Tbilisi?" },
-          { time: "13:30", title: "Architecture as a destination: can design change how the world sees Tbilisi?" },
-          { time: "15:00", title: "What can filmmakers see that developers don't?" },
-          { time: "16:30", title: "Heritage vs. future: how should Tbilisi develop?" },
-          { time: "18:00", title: "From project to place: what makes a development iconic?" },
-          { time: "19:30", title: "Designing the next Tbilisi: what should the city look like in 2035?" },
+          { time: "12:00", title: "Who is designing the new Tbilisi?",
+          subtitle: "Where tourism, gastronomy & creativity shape the city's new chapter",
+          speakers: [
+            { name: "Jordi Kuijt", role: "Hospitality and Destination Development Executive, Archi Hospitality" },
+            { name: "Gabriela Ditetova", role: "General Manager, Paragraph Freedom Square, a Luxury Collection Hotel, Tbilisi & Paragraph Golf & Spa Tabori" },
+            { name: "Mariam Kuchuloria", role: "CEO, European Business Association; Board Member, EBA Worldwide Network" },
+            { name: "Irakli Nadareishvili", role: "Founder & Director, Tbilisi Gastro Week" },
+          ] },
+          { time: "13:30", title: "Architecture as a destination: can design change how the world sees Tbilisi?",
+          subtitle: "Tbilisi through the lens: architecture as an asset for the global film industry",
+          speakers: [
+            { name: "Michael J. Burmeister", role: "Hollywood Location Manager" },
+            { name: "Becky Brake", role: "Location Management" },
+            { name: "Shalom Eizenbach", role: "International Producer & Production Professional; Founder of SE Film Production" },
+            { name: "Maia Gurabanidze", role: "Co-Founder & Head of Production, Industria" },
+            { name: "Galit Rosenstein", role: "Casting Director, Producer & Founder, Galit Rosenstein Casting Studio" },
+          ] },
+          { time: "15:00", title: "What can filmmakers see that developers don't?",
+          speakers: [
+            { name: "Shani Orona", role: "Award-Winning Location Manager" },
+            { name: "Nini Sardlishvili", role: "Film Producer & Line Producer, 100 Films" },
+            { name: "Khaled Ben Younes", role: "Co-Founder, Chief Operating Officer & Executive Producer, The Creator Space" },
+            { name: "Ana Davitaia", role: "Co-Founder & Film Producer, Studio Gambit" },
+          ] },
+          { time: "16:30", title: "Heritage vs. future: how should Tbilisi develop?",
+          speakers: [
+            { name: "Tamar Khakhishvili", role: "Deputy Chairperson, Agency of Protected Areas of Georgia" },
+            { name: "Mindia Gurgenidze", role: "Architect & Founder, Gurgenidze Architecture" },
+            { name: "Elene Otarashvili", role: "Hospitality Executive & Tourism Leader, Tierra Hospitality Partners" },
+            { name: "George Barkalaia", role: "Rector & Full Professor, New Vision University" },
+          ] },
+          { time: "18:00", title: "From project to place: what makes a development iconic?",
+          note: "Curated by NEXT" },
+          { time: "19:30", title: "Designing the next Tbilisi: what should the city look like in 2035?",
+          subtitle: "What should the future Tbilisi look, feel and function like?",
+          speakers: [{ name: "STIPFOLD", role: "Tbilisi 2035" }] },
         ],
       },
       {
@@ -426,11 +489,33 @@ const en: Content = {
         date: "25 October",
         theme: "Tbilisi: Tourism, Gastronomy & Creative Lifestyle",
         items: [
-          { time: "12:00", title: "Beyond tourism: selling an experience" },
-          { time: "13:30", title: "From Georgian cuisine to global cuisine" },
-          { time: "15:00", title: "Tbilisi after dark: culture, nightlife & the creative economy" },
-          { time: "16:30", title: "From local to global: can Tbilisi become a creative lifestyle destination?" },
-          { time: "18:00", title: "The taste of Tbilisi: gastronomy as a global city brand" },
+          { time: "12:00", title: "Beyond tourism: selling an experience",
+          speakers: [
+            { name: "Konstantin Tedeluri", role: "Chef & Culinary Artist" },
+            { name: "Gega Metepshishvili", role: "Business Development Director, Transporter LLC" },
+            { name: "Nata Kvachantiradze", role: "Founder, Georgian Tourism Award Association" },
+            { name: "Nikoloz Siradze", role: "Managing Partner, National Tourism Awards" },
+          ] },
+          { time: "13:30", title: "From Georgian cuisine to global cuisine",
+          note: "Private masterclass for international guests — curated by Marriott" },
+          { time: "15:00", title: "Tbilisi after dark: culture, nightlife & the creative economy",
+          speakers: [
+            { name: "Enzo Neri", role: "Chef & Restaurateur, Mudra by Enzo Neri" },
+            { name: "Ria Keburia", role: "Director, Ria Keburia Foundation & Ria Keburia Gallery; Fashion Designer" },
+            { name: "Elene Kapanadze", role: "Contemporary Art Curator" },
+            { name: "Natia Nikoleishvili", role: "Film Producer and Line Producer" },
+            { name: "Diana Morsonashvili", role: "Curator & Lecturer; Director, FineArtWay LLC; Partner, Who I Am Gallery" },
+          ] },
+          { time: "16:30", title: "From local to global: can Tbilisi become a creative lifestyle destination?",
+          speakers: [
+            { name: "Harry Johnson", role: "Executive Director, Tierra Hospitality Partners" },
+            { name: "Irakli Makatsaria", role: "Founder, MAQ Entertainment" },
+            { name: "Glenn Nobbs", role: "Director of Operations International, Legacy Hotels Holding" },
+            { name: "Tatia Bidzinashvili", role: "Head of Film in Georgia Program" },
+            { name: "Patrick Mignano", role: "Hollywood Location Manager & Filmmaker" },
+          ] },
+          { time: "18:00", title: "The taste of Tbilisi: gastronomy as a global city brand",
+          note: "Access by VIP pass only" },
         ],
       },
     ],
@@ -535,5 +620,12 @@ const en: Content = {
     dates: "23-24-25 October, 2026 · Tbilisi",
   },
 };
+
+// speaker line-ups are kept in English on both language versions
+ka.agenda.days.forEach((d, i) =>
+  d.items.forEach((it, j) => {
+    it.speakers = en.agenda.days[i].items[j].speakers;
+  })
+);
 
 export const content: Record<Lang, Content> = { ka, en };

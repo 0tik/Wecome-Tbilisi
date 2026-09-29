@@ -12,7 +12,8 @@ function getLang(): Lang {
 }
 
 let lang: Lang = getLang();
-let activeDay = 0;
+let lbIdx = 0;
+let lbKeysBound = false;
 
 const list = (items: string[], cls: string) =>
   `<ul class="${cls}">${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
@@ -66,10 +67,6 @@ function render() {
       <div class="fact-date" data-reveal="left">
         <div class="heading">${t.hero.dates}</div>
         <p>${t.hero.address}<br/>${t.hero.venue}</p>
-        <div class="fact-visitors">
-          <div class="big-num"><span data-count="${t.facts.visitorsValue}">0</span><span class="sfx">${t.facts.visitorsSuffix}</span></div>
-          <div class="label">${t.facts.visitorsLabel}</div>
-        </div>
       </div>
       <div class="supporters" data-reveal="right">
         <h3 class="heading">${t.facts.supportersTitle}</h3>
@@ -137,37 +134,17 @@ function render() {
       <h2 class="heading" data-reveal>${t.agenda.title}</h2>
       <p class="lead" data-reveal style="--d:.08s">${t.agenda.lead}</p>
 
-      <div class="day-tabs" role="tablist" data-reveal style="--d:.14s">
+      <div class="agenda-days">
         ${t.agenda.days
           .map(
             (d, i) => `
-        <button class="day-tab ${i === activeDay ? "on" : ""}" role="tab" aria-selected="${i === activeDay}" data-day="${i}">
-          <span class="dn">${d.num}</span>
-          <span class="dd">${d.date}</span>
-        </button>`
+        <a class="day-poster" data-reveal style="--d:${i * 0.1}s" href="img/agenda-day${i + 1}.jpg" target="_blank" rel="noopener" aria-label="${d.num} — ${d.theme}">
+          <img class="agenda-img" src="img/agenda-day${i + 1}.jpg" alt="${d.num} — ${d.theme}"
+            width="1600" height="3566" loading="lazy" decoding="async" />
+        </a>`
           )
           .join("")}
       </div>
-
-      ${t.agenda.days
-        .map(
-          (d, i) => `
-      <div class="day-panel ${i === activeDay ? "on" : ""}" role="tabpanel" data-day="${i}">
-        <h3 class="heading theme">${d.theme}</h3>
-        <ol class="sessions">
-          ${d.items
-            .map(
-              (it) => `
-          <li>
-            <span class="tm">${it.time}</span>
-            <span class="tt">${it.title}</span>
-          </li>`
-            )
-            .join("")}
-        </ol>
-      </div>`
-        )
-        .join("")}
     </div>
   </section>
 
@@ -383,6 +360,13 @@ function render() {
     <span>${t.concept.ticketLabel}</span><img src="img/tkt-logo.svg" alt="" /><span class="arr">→</span>
   </a>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" hidden>
+    <button class="lb-btn lb-close" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" aria-label="Previous">←</button>
+    <button class="lb-btn lb-next" aria-label="Next">→</button>
+    <div class="lb-scroll"><img class="lb-img" src="" alt="" /></div>
+  </div>
+
   <section class="finale">
     <img class="watermark" src="img/logo-figure.png" alt="" aria-hidden="true" />
     <div class="wrap">
@@ -416,19 +400,112 @@ function bind() {
     }, 280);
   });
 
-  // agenda day tabs
-  document.querySelectorAll<HTMLButtonElement>(".day-tab").forEach((tab) =>
-    tab.addEventListener("click", () => {
-      const i = Number(tab.dataset.day);
-      if (i === activeDay) return;
-      activeDay = i;
-      document.querySelectorAll(".day-tab").forEach((el, n) => {
-        el.classList.toggle("on", n === i);
-        el.setAttribute("aria-selected", String(n === i));
-      });
-      document.querySelectorAll(".day-panel").forEach((el, n) => el.classList.toggle("on", n === i));
+  // agenda poster lightbox
+  const lb = document.getElementById("lightbox")!;
+  const lbImg = lb.querySelector(".lb-img") as HTMLImageElement;
+  const posters = Array.from(document.querySelectorAll<HTMLAnchorElement>(".day-poster"));
+  const lbScroll = lb.querySelector(".lb-scroll") as HTMLElement;
+  let lbZoom = 1;
+  const lbBaseW = () => Math.min(860, window.innerWidth * 0.92);
+  const resetZoom = () => {
+    lbZoom = 1;
+    lbImg.style.width = "";
+  };
+  const setZoom = (z: number, cx: number, cy: number) => {
+    z = Math.min(4, Math.max(1, z));
+    const r = lbImg.getBoundingClientRect();
+    const px = (cx - r.left) / r.width;
+    const py = (cy - r.top) / r.height;
+    lbZoom = z;
+    lbImg.style.width = lbBaseW() * z + "px";
+    requestAnimationFrame(() => {
+      const r2 = lbImg.getBoundingClientRect();
+      lbScroll.scrollLeft += r2.left + px * r2.width - cx;
+      lbScroll.scrollTop += r2.top + py * r2.height - cy;
+    });
+  };
+  const openLb = (i: number) => {
+    lbIdx = (i + posters.length) % posters.length;
+    const a = posters[lbIdx];
+    resetZoom();
+    lbImg.src = a.href;
+    lbImg.alt = a.getAttribute("aria-label") || "";
+    lb.hidden = false;
+    document.body.style.overflow = "hidden";
+    lbScroll.scrollTop = 0;
+    lbScroll.scrollLeft = 0;
+  };
+  const closeLb = () => {
+    lb.hidden = true;
+    document.body.style.overflow = "";
+    resetZoom();
+  };
+  // pinch zoom (mobile) + double-tap / double-click zoom
+  let pinchD = 0;
+  let pinchStartZoom = 1;
+  let lastTap = 0;
+  const dist = (e: TouchEvent) =>
+    Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+  lbScroll.addEventListener(
+    "touchstart",
+    (e) => {
+      if (e.touches.length === 2) {
+        pinchD = dist(e);
+        pinchStartZoom = lbZoom;
+      }
+    },
+    { passive: true }
+  );
+  lbScroll.addEventListener(
+    "touchmove",
+    (e) => {
+      if (e.touches.length === 2 && pinchD > 0) {
+        e.preventDefault();
+        setZoom(
+          (pinchStartZoom * dist(e)) / pinchD,
+          (e.touches[0].clientX + e.touches[1].clientX) / 2,
+          (e.touches[0].clientY + e.touches[1].clientY) / 2
+        );
+      }
+    },
+    { passive: false }
+  );
+  lbScroll.addEventListener("touchend", (e) => {
+    if (e.touches.length < 2) pinchD = 0;
+    if (e.changedTouches.length === 1 && e.touches.length === 0) {
+      const now = Date.now();
+      const t = e.changedTouches[0];
+      if (now - lastTap < 320 && (e.target as HTMLElement).closest(".lb-img")) {
+        setZoom(lbZoom > 1.05 ? 1 : 2.2, t.clientX, t.clientY);
+        lastTap = 0;
+      } else {
+        lastTap = now;
+      }
+    }
+  });
+  lbImg.addEventListener("dblclick", (e) => setZoom(lbZoom > 1.05 ? 1 : 2, e.clientX, e.clientY));
+  posters.forEach((a, i) =>
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      openLb(i);
     })
   );
+  lb.addEventListener("click", (e) => {
+    const el = e.target as HTMLElement;
+    if (el.closest(".lb-prev")) openLb(lbIdx - 1);
+    else if (el.closest(".lb-next")) openLb(lbIdx + 1);
+    else if (!el.closest(".lb-img")) closeLb();
+  });
+  if (!lbKeysBound) {
+    lbKeysBound = true;
+    window.addEventListener("keydown", (e) => {
+      const box = document.getElementById("lightbox");
+      if (!box || box.hidden) return;
+      if (e.key === "Escape") closeLb();
+      if (e.key === "ArrowLeft") openLb(lbIdx - 1);
+      if (e.key === "ArrowRight") openLb(lbIdx + 1);
+    });
+  }
 
   // header state + sticky ticket bar (mobile)
   const head = document.getElementById("siteHead")!;
