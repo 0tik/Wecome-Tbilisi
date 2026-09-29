@@ -672,17 +672,17 @@ html[lang="en"] .quote { font-family: "Montserrat", sans-serif; font-weight: 700
 
 /* ---------- sticky ticket bar (mobile) ---------- */
 .sticky-tkt {
-  display: none;
+  display: inline-flex;
   position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  left: auto;
+  right: 22px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   z-index: 60;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 16px;
-  border-radius: 14px;
+  padding: 15px 28px;
+  border-radius: 999px;
   background: rgba(17, 17, 17, 0.72);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
   backdrop-filter: blur(14px) saturate(1.4);
@@ -702,7 +702,13 @@ html[lang="en"] .sticky-tkt { font-family: "Montserrat", sans-serif; font-weight
 .sticky-tkt .arr { font-family: "Montserrat", sans-serif; font-weight: 700; }
 .sticky-tkt.show { opacity: 1; transform: none; pointer-events: auto; }
 @media (max-width: 560px) {
-  .sticky-tkt { display: flex; }
+  .sticky-tkt {
+    display: flex;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    padding: 16px;
+  }
 }
 
 /* ---------- lightbox ---------- */
