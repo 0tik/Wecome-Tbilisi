@@ -66,22 +66,19 @@ function render() {
     <div class="wrap facts-grid">
       <div class="fact-date" data-reveal="left">
         <div class="heading">${t.hero.dates}</div>
-        <p>${t.hero.address}<br/>${t.hero.venue}</p>
+        <p>${t.hero.address} · ${t.hero.venue}</p>
+        <div class="sup-logos">
+          <div class="cell"><img src="img/sup-mayor.png" alt="${t.facts.supporters[0]}" loading="lazy" /></div>
+          <div class="cell"><img class="coat" src="img/sup-coat.png" alt="${t.facts.supporters[2]}" loading="lazy" /></div>
+          <div class="cell"><img src="img/sup-creative.png" alt="${t.facts.supporters[1]}" loading="lazy" /></div>
+          <div class="cell"><img src="img/sup-georgia.png" alt="${t.facts.supporters[3]}" loading="lazy" /></div>
+          <div class="cell"><img class="wide" src="img/sup-next.png" alt="NEXT" loading="lazy" /></div>
+          <div class="cell filler" aria-hidden="true"><img src="img/logo-h-black.png" alt="" loading="lazy" /></div>
+        </div>
       </div>
       <div class="supporters" data-reveal="right">
         <h3 class="heading">${t.facts.supportersTitle}</h3>
         ${list(t.facts.supporters, "sup")}
-        <div class="sup-logos">
-          <div class="row">
-            <img src="img/sup-mayor.png" alt="${t.facts.supporters[0]}" loading="lazy" />
-            <img src="img/sup-coat.png" alt="${t.facts.supporters[2]}" loading="lazy" />
-            <img src="img/sup-creative.png" alt="${t.facts.supporters[1]}" loading="lazy" />
-          </div>
-          <div class="row r2">
-            <img src="img/sup-georgia.png" alt="${t.facts.supporters[3]}" loading="lazy" />
-            <img class="wide" src="img/sup-next.png" alt="NEXT" loading="lazy" />
-          </div>
-        </div>
       </div>
     </div>
   </section>
