@@ -137,7 +137,7 @@ function render() {
             (d, i) => `
         <a class="day-poster" data-reveal style="--d:${i * 0.1}s" href="img/agenda-day${i + 1}.jpg" target="_blank" rel="noopener" aria-label="${d.num} — ${d.theme}">
           <img class="agenda-img" src="img/agenda-day${i + 1}.jpg" alt="${d.num} — ${d.theme}"
-            width="1600" height="3566" loading="lazy" decoding="async" />
+            width="1080" height="1350" loading="lazy" decoding="async" />
         </a>`
           )
           .join("")}
